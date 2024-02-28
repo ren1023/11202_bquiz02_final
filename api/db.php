@@ -27,7 +27,7 @@ class DB{
             if(is_array($array)){
                 if(!empty($array)){
                     $tmp=$this->a2s($array);
-                    $sql=" where ".join(" && ",$tmp);
+                    $sql.=" where ".join(" && ",$tmp);
                 }
             }else{
                 $sql.=" $array";
