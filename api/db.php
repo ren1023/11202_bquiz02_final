@@ -53,9 +53,12 @@ class DB{
             $tmp=$this->a2s($id);
             $sql.=" where ".join(" && ",$tmp);
         }else if(is_numeric($id)){
-            $sql.=" where `id`='{$id}";
+            $sql.=" where `id`='$id'";
+            // echo $sql;
         }
-        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        $row=$this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
+        
+        return $row;
     }
     function del($id){
         $sql="delete from `$this->table` ";
@@ -63,8 +66,9 @@ class DB{
             $tmp=$this->a2s($id);
             $sql.=" where ".join(" && ",$tmp);
         }else if(is_numeric($id)){
-            $sql.=" where `id`='$id";
+            $sql.=" where `id`='$id'";
         }
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
     function save($array){
@@ -81,6 +85,7 @@ class DB{
             $vals="('".join("','",$array)."')";
             $sql=$sql.$cols." values ".$vals;
         }
+        // echo $sql;
         return $this->pdo->exec($sql);
     }
 
@@ -112,3 +117,18 @@ function to($url){
 
 $Total=new DB('total');
 $User=new DB('user');
+$News=new DB('news');
+$Que=new DB('que');
+$Log=new DB('log');
+
+if(!isset($_SESSION['visited'])){
+    if($Total->count(['date'=>date('Y-m-d')]) > 0){
+        $total=$Total->find(['date'=>date('Y-m-d')]);
+        $total['total']++;
+        $Total->save($total);
+    }else{
+        $Total->save(['date'=>date('Y-m-d'),'total'=>1]);
+    }
+}else{
+    $_SESSION['visited']=1;
+}

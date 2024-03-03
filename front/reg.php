@@ -3,25 +3,25 @@
     <span style="color: red;">*請設定您要註冊的帳號及密碼(最長12個字)</span>
     <table>
         <tr>
-            <td class="clo">帳號：</td>
+            <td class="clo">Step1:帳號</td>
             <td>
                 <input type="text" name="acc" id="acc">
             </td>
         </tr>
         <tr>
-            <td class="clo">密碼</td>
+            <td class="clo">Step2:密碼</td>
             <td>
                 <input type="password" name="pw" id="pw">
             </td>
         </tr>
         <tr>
-            <td class="clo">確認密碼：</td>
+            <td class="clo">Step3:確認密碼：</td>
             <td>
                 <input type="password" name="pw2" id="pw2">
             </td>
         </tr>
         <tr>
-            <td class="clo">信箱：</td>
+            <td class="clo">Step4:信箱(忘記密碼時使用)：</td>
             <td>
                 <input type="text" name="text" id="email">
             </td>
@@ -47,7 +47,7 @@
             if(user.pw==user.pw2){
                 $.post('./api/chk_acc.php', {acc:user.acc}, (res) => {
                 if (parseInt(res) == 0) {
-                    $.post('./api/reg.php', {user}, (res) => {
+                    $.post('./api/reg.php', user, (res) => {
                         alert("歡迎,註冊成功")
                     })
                 } else {

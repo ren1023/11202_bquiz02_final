@@ -28,14 +28,14 @@
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
+				<a class="blo" href="?do=admin">帳號管理</a>
 				<a class="blo" href="?do=po">分類網誌</a>
-				<a class="blo" href="?do=news">最新文章</a>
-				<a class="blo" href="?do=pop">人氣文章</a>
-				<a class="blo" href="?do=know">講座訊息</a>
-				<a class="blo" href="?do=que">問卷調查</a>
+				<a class="blo" href="?do=news">最新文章管理</a>
+				<a class="blo" href="?do=know">講座管理</a>
+				<a class="blo" href="?do=que">問卷管理</a>
 			</div>
 			<div class="hal" id="main">
-			<marquee style="width:80%">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
+			<marquee style="width:80% ; display:inline-block;">請民眾踴躍投稿電子報，讓電子報成為大家相互交流、分享的園地！詳見最新文章</marquee>
 					<span style="width:18%; display:inline-block;">
 					<?php
 					if(!isset($_SESSION['user'])){
@@ -49,7 +49,10 @@
 						<?php
 						if($_SESSION['user']== 'admin'){
 							?>
-							<button onclick="location.herf='back.php'">管理</button>
+							<!-- <button onclick="location.href='back.php'">管理</button> -->
+						<button onclick="location.href='back.php'">管理</button>
+
+
 							<?php							
 						}
 					}
